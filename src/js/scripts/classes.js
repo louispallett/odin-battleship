@@ -3,7 +3,7 @@ class Gameboard {
     ================================================
     Pseudocode
     ================================================
-    >>>>Gameboards should be able to place ships at specific coordinates by calling the ship factory function<<<<
+    >>>>Gameboards should be able to place ships at specific coordinates by calling the ship class<<<<
 
         >>>Logic
         >Ingredients:
@@ -38,6 +38,9 @@ class Gameboard {
         return board;
     }
 
+    placeShip = (ship) => {
+        return 1;
+    }
 }
 
 class Ship {

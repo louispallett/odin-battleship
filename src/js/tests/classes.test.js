@@ -25,9 +25,9 @@ describe("Gameboard", () => {
       // Ensure the ship is placed successfully
       expect(result).toBeTruthy();
       // Ensure the ship is at the correct coordinates
-      expect(gameboard.board[2][3]).toEqual(ship);
-      expect(gameboard.board[3][3]).toEqual(ship);
-      expect(gameboard.board[4][3]).toEqual(ship); 
+      expect(gameboard.board[2][3]).toBe(ship); // Change to 'toEqual' if certain error shows
+      expect(gameboard.board[3][3]).toBe(ship); // Change to 'toEqual' if certain error shows
+      expect(gameboard.board[4][3]).toBe(ship); // Change to 'toEqual' if certain error shows 
     });
   
     test.skip("Refuses to place a ship at illegal coordinates", () => {
@@ -44,14 +44,27 @@ describe("Gameboard", () => {
     test.skip("Refuses to place a ship where a ship already exists", () => {
         const gameboard = new Gameboard(10);
         const ship1 = new Ship(3);
+        // Place ship in empty (valid) spot
         gameboard.placeShip(ship1, 0, 0, "horizontal");
 
         const ship2 = new Ship(2);
+        // Attempt to place ship2 in occupied (invalid) space
         const result = gameboard.placeShip(ship2, 2, 0, "vertical");
 
+        // result should return false and gameboard.board[2][0] should show ship1 (i.e. not )
         expect(result).toBeFalsy();
         expect(gameboard.board[2][0]).toBe(ship1);
+    });
+
+    test.skip("Places multiple ships in valid locations", () => {
+        const gameboard = new Gameboard(10);
+        const ship1 = new Ship(4);
+        const ship2 = new Ship(2);
+        const result1 = gameboard.placeShip(ship1, 0, 0, "horizontal");
+        const result2 = gameboard.placeShip(ship2, 4, 3, "vertical");
+        expect(result1).toBeTruthy();
+        expect(result2).toBeTruthy();
+        expect(gameboard.board[0][0]).toBe(ship1);
+        expect(gameboard.board[4][3]).toBe(ship2);
     })
-  
-    // Add more test cases as needed, such as testing for overlapping ships, placing multiple ships, etc.
 });

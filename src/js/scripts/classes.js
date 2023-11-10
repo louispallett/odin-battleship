@@ -32,7 +32,7 @@ class Gameboard {
         let board = [];
         for(let i = 0; i < size; i++) {
             for(let j = 0; j < size; j++) {
-                board.push(i, j);
+                board.push([i, j]);
             }
         }
         return board;

@@ -33,6 +33,10 @@ class Gameboard {
         }
         return false;
     }
+
+    receiveAttack = (gameboard, index) => {
+        
+    }
 }
 
 class Ship {

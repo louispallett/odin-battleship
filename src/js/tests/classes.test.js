@@ -48,7 +48,7 @@ describe("checkBoard", () => {
     });
 });
 
-describe("Gameboard", () => {
+describe("Place Ship", () => {
     test("Empty slots return null", () => {
         const gameboard = new Gameboard(10);
         expect(gameboard.board[88]).toStrictEqual(null);
@@ -111,5 +111,26 @@ describe("Gameboard", () => {
         expect(gameboard.board[43]).toBe(ship2);
         expect(gameboard.board[53]).toBe(ship2);
         expect(gameboard.board[63]).toStrictEqual(null);
+    });
+});
+
+describe("Receive Attack", () => {
+    test.skip("When hit fail, return false and record position", () => {
+        const gameboard = new Gameboard(10);
+        const ship = new Ship(4);
+        gameboard.placeShip(gameboard, 40, ship);
+        const failedAttack = gameboard.receiveAttack(gameboard, 50);
+        expect(failedAttack).toBeFalsy();
+        expect(gameboard.board[50]).toBe("attacked")
+    });
+
+    test.skip("When hit success, returns true and checks if ship is sunk", () => {
+        const gameboard = new Gameboard(10);
+        const ship = new Ship(4, "vertical");
+        gameboard.placeShip(gameboard, 69, ship);
+        const attack = gameboard.receiveAttack(gameboard, 79);
+        expect(attack).toBeTruthy();
+        expect(ship.hitNum).toEqual(1);
+        expect(ship.isSunk).toBeFalsy();
     });
 });

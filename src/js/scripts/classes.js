@@ -1,3 +1,5 @@
+import { checkBoard } from "./helperfunctions";
+
 class Gameboard {
     /*
     ================================================
@@ -17,6 +19,18 @@ class Gameboard {
             >Place a ship at legal coordinates - does it return coordinates correctly?
             >Place a ship at illegal coordinates - does it return an error?
 
+        >>Code<<
+        Find the index of the board.
+            Below helper function? If(checkBoard)
+                >>>Loop through size number of times
+                >>>If "horizontal"
+                >>>    return check board[index + (i * 10)]; (return true if space is free);
+                >>>Else if "vertical"
+                >>>    return check board[index + (i)]; (return true if space is free);
+                >>>return false;
+            
+
+
 
     Gameboards should have a receiveAttack function that takes a pair of coordinates, determines whether or not the attack hit a ship and then sends the ‘hit’ function to the correct ship, 
     or records the coordinates of the missed shot.
@@ -32,14 +46,17 @@ class Gameboard {
         let board = [];
         for(let i = 0; i < size; i++) {
             for(let j = 0; j < size; j++) {
-                board.push([i, j]);
+                board.push(null);
             }
         }
         return board;
     }
 
-    placeShip = (ship) => {
-        return 1;
+    placeShip = (board, index, size, direction) => {
+        if(checkBoard(board, index, size, direction)) {
+            return true;
+        }
+        return false;
     }
 }
 
@@ -63,8 +80,8 @@ class Ship {
 
             >> A simple conditional
     */
-    constructor(length) {
-        this.length = length;
+    constructor(size) {
+        this.size = size;
         this.sunk = false;
         this.hitNum = 0;
     }
@@ -74,7 +91,7 @@ class Ship {
     }
 
     isSunk = () => {
-        if(this.hitNum >= this.length) {
+        if(this.hitNum >= this.size) {
             return true;
         }
         return false;

@@ -1,4 +1,5 @@
 import { Ship, Gameboard } from "../scripts/classes";
+import { checkBoard } from "../scripts/helperfunctions";
 
 const gameboard = new Gameboard(10);
 
@@ -19,14 +20,14 @@ describe("Ship", () => {
 
 describe("Gameboard", () => {
     test("Empty slots return null", () => {
-        expect(gameboard.board[88]).toStrictEqual([null, null]);
-    })
+        expect(gameboard.board[88]).toStrictEqual(null);
+    });
 
     test.skip("Places a ship at legal coordinates", () => {
       const gameboard = new Gameboard(10);
       const ship = new Ship(3);
   
-      const result = gameboard.placeShip(ship, 23, "horizontal");
+      const result = gameboard.placeShip(gameboard, 23, ship.size, "horizontal");
   
       // Ensure the ship is placed successfully
       expect(result).toBeTruthy();
@@ -70,5 +71,17 @@ describe("Gameboard", () => {
         expect(result2).toBeTruthy();
         expect(gameboard.board[0]).toBe(ship1);
         expect(gameboard.board[43]).toBe(ship2);
+    });
+});
+
+describe("checkBoard", () => {
+    test("Returns true if squares are empty", () => {
+        expect(checkBoard(gameboard, 0, 2, "vertical")).toBeTruthy();
+    });
+
+    test("Returns false if squares are not empty", () => {
+        const ship = new Ship(5);
+        gameboard.board[7] = ship;
+        expect(checkBoard(gameboard, 5, 5, "horizontal")).toBeFalsy();
     });
 });

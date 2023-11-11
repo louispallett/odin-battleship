@@ -1,4 +1,5 @@
 import { checkBoard, checkPosition } from "./helperfunctions";
+export { Ship, Gameboard };
 
 class Gameboard {
     constructor(size) {
@@ -16,10 +17,18 @@ class Gameboard {
         return board;
     }
 
-    placeShip = (board, index, size, direction) => {
-        const boardIsFree = checkBoard(board, index, size, direction);
-        const positionIsLegal = checkPosition();
+    placeShip = (gameboard, index, ship) => {
+        const boardIsFree = checkBoard(gameboard, index, ship);
+        const positionIsLegal = checkPosition(ship, index);
         if(boardIsFree && positionIsLegal) {
+            // Checks done, can place ship
+            for(let i = 0; i < ship.size; i++) {
+                if(ship.direction == "horizontal") {
+                    gameboard.board[index + i] = ship;                    
+                } else if (ship.direction == "vertical") {
+                    gameboard.board[index + (i * 10)] = ship;
+                }
+            }
             return true;
         }
         return false;
@@ -45,5 +54,3 @@ class Ship {
         return false;
     }
 }
-
-export { Ship, Gameboard };

@@ -51,7 +51,7 @@ describe("checkBoard", () => {
 describe("Place Ship", () => {
     test("Empty slots return null", () => {
         const gameboard = new Gameboard(10);
-        expect(gameboard.board[88]).toStrictEqual(null);
+        expect(gameboard.board[88]).toBeNull();
     });
 
     test("Places a ship at legal coordinates", () => {
@@ -76,7 +76,7 @@ describe("Place Ship", () => {
       const result = gameboard.placeShip(gameboard, 95, ship);
   
       expect(result).toBeFalsy(); // Ensure the ship placement fails
-      expect(gameboard.board[95]).toStrictEqual(null);; // Ensure the board remains unchanged
+      expect(gameboard.board[95]).toBeNull();; // Ensure the board remains unchanged
     });
 
     test("Refuses to place a ship where a ship already exists", () => {
@@ -106,11 +106,11 @@ describe("Place Ship", () => {
         expect(gameboard.board[1]).toBe(ship1);
         expect(gameboard.board[2]).toBe(ship1);
         expect(gameboard.board[3]).toBe(ship1);
-        expect(gameboard.board[4]).toStrictEqual(null);
-        expect(gameboard.board[5]).toStrictEqual(null);
+        expect(gameboard.board[4]).toBeNull();
+        expect(gameboard.board[5]).toBeNull();
         expect(gameboard.board[43]).toBe(ship2);
         expect(gameboard.board[53]).toBe(ship2);
-        expect(gameboard.board[63]).toStrictEqual(null);
+        expect(gameboard.board[63]).toBeNull();
     });
 });
 

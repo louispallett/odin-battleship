@@ -1,5 +1,5 @@
 import { Ship, Gameboard } from "../scripts/classes";
-import { checkBoard } from "../scripts/helperfunctions";
+import { checkBoard, checkPosition } from "../scripts/helperfunctions";
 
 const gameboard = new Gameboard(10);
 
@@ -76,12 +76,30 @@ describe("Gameboard", () => {
 
 describe("checkBoard", () => {
     test("Returns true if squares are empty", () => {
-        expect(checkBoard(gameboard, 0, 2, "vertical")).toBeTruthy();
+        const ship = new Ship(3, "vertical")
+        expect(checkBoard(gameboard, 0, ship)).toBeTruthy();
     });
 
     test("Returns false if squares are not empty", () => {
         const ship = new Ship(5);
         gameboard.board[7] = ship;
-        expect(checkBoard(gameboard, 5, 5, "horizontal")).toBeFalsy();
+        expect(checkBoard(gameboard, 5, ship)).toBeFalsy();
     });
 });
+
+describe("checkPosition", () => {
+    test("Returns true if position is on board (horizontal)", () => {
+        const ship = new Ship(3);
+        expect(checkPosition(ship, 3)).toBeTruthy();
+    });
+
+    test("Returns false if position is no on board (horizontal)", () => {
+        const ship = new Ship(3);
+        expect(checkPosition(ship, 88)).toBeFalsy();
+    });
+
+    test("Returns true if position is on board (vertical)", () => {
+        const ship = new Ship(3, "vertical");
+        expect(checkPosition(ship, 3)).toBeTruthy();
+    });
+})

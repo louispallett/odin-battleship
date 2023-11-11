@@ -1,10 +1,10 @@
-export { checkBoard };
+export { checkBoard, checkPosition };
 
-const checkBoard = (gameboard, index, size, direction) => {
+const checkBoard = (gameboard, index, ship) => {
     let counter = 0;
     let temp = index;
-    while(index < temp + size) {
-        if(direction == "horizontal") {
+    while(index < temp + ship.size) {
+        if(ship.direction == "horizontal") {
             if(gameboard.board[index] === null) {
                 counter++;
                 index++;
@@ -12,7 +12,7 @@ const checkBoard = (gameboard, index, size, direction) => {
                 return false;
             }
 
-        } else if (direction == "vertical") {
+        } else if (ship.direction == "vertical") {
             if(gameboard.board[index] === null) {
                 counter++;
                 index += 10;
@@ -23,8 +23,20 @@ const checkBoard = (gameboard, index, size, direction) => {
         }
     }
 
-    if(counter == size) {
+    if(counter == ship.size) {
         return true;
     }
     return false;
 };
+
+const checkPosition = (ship, index) => {
+    if(ship.direction == "horizontal") {
+        let lastdigit = index;
+        if(index > 9) lastdigit = index/10;
+        return (lastdigit + ship.size > 9)? false : true;
+    } else if (ship.direction == "vertical") {
+        // checkboard() function already checks this so can assume true
+        return true;
+    }
+    return false;
+}

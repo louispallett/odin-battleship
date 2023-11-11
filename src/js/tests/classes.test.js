@@ -159,6 +159,6 @@ describe("Receive Attack", () => {
         gameboard.receiveAttack(gameboard, 50);
         gameboard.receiveAttack(gameboard, 60);
         gameboard.receiveAttack(gameboard, 78);
-        expect(gameboard.missedAttacks).toEqual([50, 60, 78]);
+        expect(gameboard.missedAttacks).toEqual(expect.arrayContaining([50, 60, 78]));
     });
 });

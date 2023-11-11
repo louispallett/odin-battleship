@@ -115,22 +115,50 @@ describe("Place Ship", () => {
 });
 
 describe("Receive Attack", () => {
-    test.skip("When hit fail, return false and record position", () => {
+    test("When hit fail, return false and record position", () => {
         const gameboard = new Gameboard(10);
         const ship = new Ship(4);
         gameboard.placeShip(gameboard, 40, ship);
         const failedAttack = gameboard.receiveAttack(gameboard, 50);
         expect(failedAttack).toBeFalsy();
-        expect(gameboard.board[50]).toBe("attacked")
+        expect(gameboard.board[50]).toBe(1)
     });
 
-    test.skip("When hit success, returns true and checks if ship is sunk", () => {
+    test("When hit success, returns true and checks if ship is sunk", () => {
         const gameboard = new Gameboard(10);
         const ship = new Ship(4, "vertical");
         gameboard.placeShip(gameboard, 69, ship);
         const attack = gameboard.receiveAttack(gameboard, 79);
         expect(attack).toBeTruthy();
         expect(ship.hitNum).toEqual(1);
-        expect(ship.isSunk).toBeFalsy();
+        expect(ship.isSunk()).toBeFalsy();
+    });
+
+    test("A ship sinks if hitNum == size", () => {
+        const gameboard = new Gameboard(10);
+        const ship = new Ship(2);
+        gameboard.placeShip(gameboard, 40, ship);
+        gameboard.receiveAttack(gameboard, 40);
+        gameboard.receiveAttack(gameboard, 41);
+        expect(ship.sunk).toBeTruthy(); 
+    });
+
+    test("A ship does NOT sink if hitNum != size", () => {
+        const gameboard = new Gameboard(10);
+        const ship = new Ship(3);
+        gameboard.placeShip(gameboard, 40, ship);
+        gameboard.receiveAttack(gameboard, 40);
+        gameboard.receiveAttack(gameboard, 41);
+        expect(ship.sunk).toBeFalsy(); 
+    });
+
+    test("Missed attacks record indexes", () => {
+        const gameboard = new Gameboard(10);
+        const ship = new Ship(3);
+        gameboard.placeShip(gameboard, 40, ship);
+        gameboard.receiveAttack(gameboard, 50);
+        gameboard.receiveAttack(gameboard, 60);
+        gameboard.receiveAttack(gameboard, 78);
+        expect(gameboard.missedAttacks).toEqual([50, 60, 78]);
     });
 });

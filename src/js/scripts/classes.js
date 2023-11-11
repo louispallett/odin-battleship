@@ -5,6 +5,7 @@ class Gameboard {
     constructor(size) {
         this.size = size;
         this.board = this.buildBoard(size);
+        this.missedAttacks = [];
     }
 
     buildBoard = (size) => {
@@ -35,7 +36,15 @@ class Gameboard {
     }
 
     receiveAttack = (gameboard, index) => {
-        
+        if(gameboard.board[index] === null || gameboard.board[index] == 1) { // Attack fails
+            this.missedAttacks.push(index);
+            gameboard.board[index] = 1;
+            return false;
+        } else { // Attack succeeds
+            const ship = gameboard.board[index];
+            ship.hit();
+            return true;
+        }
     }
 }
 
@@ -49,6 +58,7 @@ class Ship {
 
     hit = () => {
         this.hitNum++;
+        this.sunk = this.isSunk();
     }
 
     isSunk = () => {

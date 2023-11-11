@@ -27,7 +27,7 @@ describe("Gameboard", () => {
       const gameboard = new Gameboard(10);
       const ship = new Ship(3);
   
-      const result = gameboard.placeShip(gameboard, 23, ship.size, "horizontal");
+      const result = gameboard.placeShip(gameboard, 23, ship);
   
       // Ensure the ship is placed successfully
       expect(result).toBeTruthy();
@@ -93,13 +93,13 @@ describe("checkPosition", () => {
         expect(checkPosition(ship, 3)).toBeTruthy();
     });
 
-    test("Returns false if position is no on board (horizontal)", () => {
+    test("Returns false if position is not on board (horizontal)", () => {
         const ship = new Ship(3);
-        expect(checkPosition(ship, 88)).toBeFalsy();
+        expect(checkPosition(ship, 18)).toBeFalsy();
     });
 
     test("Returns true if position is on board (vertical)", () => {
         const ship = new Ship(3, "vertical");
         expect(checkPosition(ship, 3)).toBeTruthy();
     });
-})
+});

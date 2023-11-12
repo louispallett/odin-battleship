@@ -1,6 +1,6 @@
 import { Gameboard } from "../scripts/Gameboard";
 import { Ship } from "../scripts/Ship"
-import { Player, Computer, Human } from "../scripts/Player";
+import { Computer, Human } from "../scripts/Player";
 import { checkSquare } from "../scripts/helperfunctions";
 
 describe("checksquare", () => {

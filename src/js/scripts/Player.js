@@ -1,5 +1,5 @@
 import { checkSquare } from "./helperfunctions";
-export { Player, Computer, Human };
+export { Computer, Human };
 
 class Player {
     constructor() {}

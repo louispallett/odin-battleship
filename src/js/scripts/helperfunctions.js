@@ -1,4 +1,12 @@
-export { checkBoard, checkPosition };
+export { checkBoard, checkPosition, checkSquare };
+
+const checkSquare = (gameboard, index) => {
+    if(gameboard.board[index] == 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 const checkBoard = (gameboard, index, ship) => {
     let counter = 0;

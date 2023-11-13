@@ -1,0 +1,22 @@
+.header {
+    grid-area: 1 / 1 / 2 / 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lowpal-wrapper {
+    display: flex;
+    gap: 10px
+}

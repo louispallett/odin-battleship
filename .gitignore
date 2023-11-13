@@ -1,6 +1,7 @@
 __mocks__/
 dist/
 node_modules/
+src/assets/
 
 babel.config.js
 jest.config.js

@@ -6,13 +6,25 @@
     grid-area: 2 / 2 / 3 / 3;
 }
 
-.left,
-.right {
+#left,
+#right {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    margin-top: 20px;
     & > div:first-child {
         font-size: 30px;
+    }
+}
+
+#gameboard-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+    & > div {
+        height: 50px;
+        width: 50px;
+        border: 1px solid white;
     }
 }

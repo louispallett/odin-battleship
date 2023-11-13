@@ -44,3 +44,15 @@ button {
         }
     }
 }
+
+@media only screen and (max-width: 950px) {
+    .main-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+    }
+}

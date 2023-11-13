@@ -27,4 +27,40 @@
         width: 50px;
         border: 1px solid white;
     }
+    & > div:hover {
+        background-color: white;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    #gameboard-grid {
+        grid-template-columns: repeat(10, 45px);
+        grid-template-rows: repeat(10, 45px);
+        & > div {
+            height: 45px;
+            width: 45px;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #gameboard-grid {
+        grid-template-columns: repeat(10, 40px);
+        grid-template-rows: repeat(10, 40px);
+        & > div {
+            height: 40px;
+            width: 40px;
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #gameboard-grid {
+        grid-template-columns: repeat(10, 35px);
+        grid-template-rows: repeat(10, 35px);
+        & > div {
+            height: 35px;
+            width: 35px;
+        }
+    }
 }

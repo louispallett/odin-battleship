@@ -7,7 +7,7 @@
 .header-left {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .title-wrapper {
@@ -19,4 +19,8 @@
 .lowpal-wrapper {
     display: flex;
     gap: 10px
+}
+
+.buttons {
+    align-self: flex-end;
 }

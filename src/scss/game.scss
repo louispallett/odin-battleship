@@ -5,3 +5,14 @@
 .right {
     grid-area: 2 / 2 / 3 / 3;
 }
+
+.left,
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    & > div:first-child {
+        font-size: 30px;
+    }
+}

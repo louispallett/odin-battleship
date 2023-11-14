@@ -20,9 +20,16 @@ body {
 }
 
 button {
-    background-color: grey;
+    padding: 5px 20px;
+    font-weight: bold;
+    background-color: rgb(27, 27, 247);
+    border: 2px solid white;
     font-size: 20px;
     border-radius: 5px;
+    &:hover {
+        background-color: rgb(61, 87, 233);
+        cursor: pointer;
+    }
 }
 
 .footer {

@@ -1,11 +1,7 @@
 export { checkBoard, checkPosition, checkSquare };
 
 const checkSquare = (gameboard, index) => {
-    if(gameboard.board[index] == 1) {
-        return false;
-    } else {
-        return true;
-    }
+    return (gameboard.board[index] == 1)? false : true;
 }
 
 const checkBoard = (gameboard, index, ship) => {

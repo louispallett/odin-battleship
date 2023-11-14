@@ -13,7 +13,7 @@ body {
 
 .main-wrapper {
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto 50px;
     grid-template-columns: 1fr 1fr;
     margin: 0;
     padding: 0;
@@ -25,25 +25,34 @@ button {
     border-radius: 5px;
 }
 
+.footer {
+    grid-area: 3 / 1 / 4 / -1;
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: .8rem;
+}
+
 
 // TEMPORARY
-.left, .right {
-    height: 500px;
-}
+// .left, .right {
+//     height: 500px;
+// }
 
-.header, .left, .right, .header-left, .header-right {
-    border: 1px solid red;
-}
+// .header, .left, .right, .header-left, .header-right {
+//     border: 1px solid red;
+// }
 
-.title-wrapper {
-    border: 1px solid red;
-    & > div {
-        border: 1px solid red;
-        & > div {
-            border: 1px solid red;
-        }
-    }
-}
+// .title-wrapper {
+//     border: 1px solid red;
+//     & > div {
+//         border: 1px solid red;
+//         & > div {
+//             border: 1px solid red;
+//         }
+//     }
+// }
 
 @media only screen and (max-width: 950px) {
     .main-wrapper {
@@ -54,5 +63,15 @@ button {
     .header {
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 950px) {
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
     }
 }

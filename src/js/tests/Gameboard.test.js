@@ -27,7 +27,7 @@ describe("Place Ship", () => {
       const gameboard = new Gameboard(10);
       const ship = new Ship(3);
   
-      const result = gameboard.placeShip(gameboard, 23, ship);
+      const result = gameboard.placeShip(23, ship);
   
       // Ensure the ship is placed successfully
       expect(result).toBeTruthy();
@@ -42,7 +42,7 @@ describe("Place Ship", () => {
       const ship = new Ship(4, "vertical");
   
       // Trying to place a ship outside the board (10x10)
-      const result = gameboard.placeShip(gameboard, 95, ship);
+      const result = gameboard.placeShip(95, ship);
   
       expect(result).toBeFalsy(); // Ensure the ship placement fails
       expect(gameboard.board[95]).toBeNull();; // Ensure the board remains unchanged
@@ -52,11 +52,11 @@ describe("Place Ship", () => {
         const gameboard = new Gameboard(10);
         const ship1 = new Ship(3, "vertical");
         // Place ship in empty (valid) spot
-        gameboard.placeShip(gameboard, 0, ship1);
+        gameboard.placeShip(0, ship1);
 
         const ship2 = new Ship(2);
         // Attempt to place ship2 in occupied (invalid) space
-        const result = gameboard.placeShip(gameboard, 10, ship2);
+        const result = gameboard.placeShip(10, ship2);
 
         // result should return false and gameboard.board[15] should show ship1 (i.e. not )
         expect(result).toBeFalsy();
@@ -67,8 +67,8 @@ describe("Place Ship", () => {
         const gameboard = new Gameboard(10);
         const ship1 = new Ship(4);
         const ship2 = new Ship(2, "vertical");
-        const result1 = gameboard.placeShip(gameboard, 0, ship1);
-        const result2 = gameboard.placeShip(gameboard, 43, ship2);
+        const result1 = gameboard.placeShip(0, ship1);
+        const result2 = gameboard.placeShip(43, ship2);
         expect(result1).toBeTruthy();
         expect(result2).toBeTruthy();
         expect(gameboard.board[0]).toBe(ship1);
@@ -87,8 +87,8 @@ describe("Receive Attack", () => {
     test("When hit fail, return false and record position", () => {
         const gameboard = new Gameboard(10);
         const ship = new Ship(4);
-        gameboard.placeShip(gameboard, 40, ship);
-        const failedAttack = gameboard.receiveAttack(gameboard, 50);
+        gameboard.placeShip(40, ship);
+        const failedAttack = gameboard.receiveAttack(50);
         expect(failedAttack).toBeFalsy();
         expect(gameboard.board[50]).toBe(1)
     });
@@ -96,8 +96,8 @@ describe("Receive Attack", () => {
     test("When hit success, returns true and checks if ship is sunk", () => {
         const gameboard = new Gameboard(10);
         const ship = new Ship(4, "vertical");
-        gameboard.placeShip(gameboard, 69, ship);
-        const attack = gameboard.receiveAttack(gameboard, 79);
+        gameboard.placeShip(69, ship);
+        const attack = gameboard.receiveAttack(79);
         expect(attack).toBeTruthy();
         expect(ship.hitNum).toEqual(1);
         expect(ship.isSunk()).toBeFalsy();
@@ -106,28 +106,28 @@ describe("Receive Attack", () => {
     test("A ship sinks if hitNum == size", () => {
         const gameboard = new Gameboard(10);
         const ship = new Ship(2);
-        gameboard.placeShip(gameboard, 40, ship);
-        gameboard.receiveAttack(gameboard, 40);
-        gameboard.receiveAttack(gameboard, 41);
+        gameboard.placeShip(40, ship);
+        gameboard.receiveAttack(40);
+        gameboard.receiveAttack(41);
         expect(ship.sunk).toBeTruthy(); 
     });
 
     test("A ship does NOT sink if hitNum != size", () => {
         const gameboard = new Gameboard(10);
         const ship = new Ship(3);
-        gameboard.placeShip(gameboard, 40, ship);
-        gameboard.receiveAttack(gameboard, 40);
-        gameboard.receiveAttack(gameboard, 41);
+        gameboard.placeShip(40, ship);
+        gameboard.receiveAttack(40);
+        gameboard.receiveAttack(41);
         expect(ship.sunk).toBeFalsy(); 
     });
 
     test("Missed attacks record indexes", () => {
         const gameboard = new Gameboard(10);
         const ship = new Ship(3);
-        gameboard.placeShip(gameboard, 40, ship);
-        gameboard.receiveAttack(gameboard, 50);
-        gameboard.receiveAttack(gameboard, 60);
-        gameboard.receiveAttack(gameboard, 78);
+        gameboard.placeShip(40, ship);
+        gameboard.receiveAttack(50);
+        gameboard.receiveAttack(60);
+        gameboard.receiveAttack(78);
         expect(gameboard.missedAttacks).toEqual(expect.arrayContaining([50, 60, 78]));
     });
 });

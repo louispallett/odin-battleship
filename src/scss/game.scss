@@ -18,7 +18,8 @@
     }
 }
 
-#gameboard-grid {
+#player-grid,
+#computer-grid {
     display: grid;
     grid-template-columns: repeat(10, 50px);
     grid-template-rows: repeat(10, 50px);
@@ -33,7 +34,8 @@
 }
 
 @media only screen and (max-width: 1050px) {
-    #gameboard-grid {
+    #player-grid,
+    #computer-grid {
         grid-template-columns: repeat(10, 45px);
         grid-template-rows: repeat(10, 45px);
         & > div {
@@ -44,7 +46,8 @@
 }
 
 @media only screen and (max-width: 500px) {
-    #gameboard-grid {
+    #player-grid,
+    #computer-grid {
         grid-template-columns: repeat(10, 40px);
         grid-template-rows: repeat(10, 40px);
         & > div {
@@ -55,7 +58,8 @@
 }
 
 @media only screen and (max-width: 450px) {
-    #gameboard-grid {
+    #player-grid,
+    #computer-grid {
         grid-template-columns: repeat(10, 35px);
         grid-template-rows: repeat(10, 35px);
         & > div {

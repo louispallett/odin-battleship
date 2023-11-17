@@ -18,16 +18,16 @@ class Gameboard {
         return board;
     }
 
-    placeShip = (gameboard, index, ship) => {
-        const boardIsFree = checkBoard(gameboard, index, ship);
+    placeShip = (index, ship) => {
+        const boardIsFree = checkBoard(this, index, ship);
         const positionIsLegal = checkPosition(ship, index);
         if(boardIsFree && positionIsLegal) {
             // Checks done, can place ship
             for(let i = 0; i < ship.size; i++) {
                 if(ship.direction == "horizontal") {
-                    gameboard.board[index + i] = ship;                    
+                    this.board[index + i] = ship;                    
                 } else if (ship.direction == "vertical") {
-                    gameboard.board[index + (i * 10)] = ship;
+                    this.board[index + (i * 10)] = ship;
                 }
             }
             return true;
@@ -35,13 +35,13 @@ class Gameboard {
         return false;
     }
 
-    receiveAttack = (gameboard, index) => {
-        if(gameboard.board[index] === null || gameboard.board[index] == 1) { // Attack fails
+    receiveAttack = (index) => {
+        if(this.board[index] === null || this.board[index] == 1) { // Attack fails
             this.missedAttacks.push(index);
-            gameboard.board[index] = 1;
+            this.board[index] = 1;
             return false;
         } else { // Attack succeeds
-            const ship = gameboard.board[index];
+            const ship = this.board[index];
             ship.hit();
             return true;
         }

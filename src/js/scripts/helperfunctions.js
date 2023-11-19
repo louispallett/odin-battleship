@@ -1,7 +1,8 @@
 export { checkBoard, checkPosition, checkSquare };
 
 const checkSquare = (gameboard, index) => {
-    return (gameboard.board[index] == 1)? false : true;
+    return (gameboard.board[index] == 1 
+        || gameboard.board[index] == 0)? false : true;
 }
 
 const checkBoard = (gameboard, index, ship) => {

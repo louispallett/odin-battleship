@@ -1,19 +1,9 @@
 import { checkSquare } from "./helperfunctions";
-export { Computer, Human };
+export { Computer };
 
 class Player {
     constructor() {}
 };
-
-class Human extends Player {
-    constructor() {
-        super();
-    };
-    
-    play = (gameboard, index) => {
-        return gameboard.receiveAttack(gameboard, index);
-    }
-}
 
 class Computer extends Player {
     constructor() {
@@ -25,6 +15,6 @@ class Computer extends Player {
         while(!checkSquare(gameboard, index)) {
             index = Math.floor(Math.random() * 100);
         }
-        return gameboard.receiveAttack(gameboard, index);
+        return index;
     }
 }

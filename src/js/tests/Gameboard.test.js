@@ -4,13 +4,13 @@ import { checkBoard } from "../scripts/helperfunctions";
 
 describe("checkBoard", () => {
     test("Returns true if squares are empty", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship = new Ship(3, "vertical")
         expect(checkBoard(gameboard, 0, ship)).toBeTruthy();
     });
 
     test("Returns false if squares are not empty", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship = new Ship(5);
         gameboard.board[7] = ship;
         expect(checkBoard(gameboard, 5, ship)).toBeFalsy();
@@ -19,12 +19,12 @@ describe("checkBoard", () => {
 
 describe("Place Ship", () => {
     test("Empty slots return null", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         expect(gameboard.board[88]).toBeNull();
     });
 
     test("Places a ship at legal coordinates", () => {
-      const gameboard = new Gameboard(10);
+      const gameboard = new Gameboard();
       const ship = new Ship(3);
   
       const result = gameboard.placeShip(23, ship);
@@ -38,7 +38,7 @@ describe("Place Ship", () => {
     });
   
     test("Refuses to place a ship at illegal coordinates", () => {
-      const gameboard = new Gameboard(10);
+      const gameboard = new Gameboard();
       const ship = new Ship(4, "vertical");
   
       // Trying to place a ship outside the board (10x10)
@@ -49,7 +49,7 @@ describe("Place Ship", () => {
     });
 
     test("Refuses to place a ship where a ship already exists", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship1 = new Ship(3, "vertical");
         // Place ship in empty (valid) spot
         gameboard.placeShip(0, ship1);
@@ -64,7 +64,7 @@ describe("Place Ship", () => {
     });
 
     test("Places multiple ships in valid locations", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship1 = new Ship(4);
         const ship2 = new Ship(2, "vertical");
         const result1 = gameboard.placeShip(0, ship1);
@@ -85,7 +85,7 @@ describe("Place Ship", () => {
 
 describe("Receive Attack", () => {
     test("When hit fail, return false and record position", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship = new Ship(4);
         gameboard.placeShip(40, ship);
         const failedAttack = gameboard.receiveAttack(50);
@@ -94,7 +94,7 @@ describe("Receive Attack", () => {
     });
 
     test("When hit success, returns true and checks if ship is sunk", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship = new Ship(4, "vertical");
         gameboard.placeShip(69, ship);
         const attack = gameboard.receiveAttack(79);
@@ -104,7 +104,7 @@ describe("Receive Attack", () => {
     });
 
     test("A ship sinks if hitNum == size", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship = new Ship(2);
         gameboard.placeShip(40, ship);
         gameboard.receiveAttack(40);
@@ -113,7 +113,7 @@ describe("Receive Attack", () => {
     });
 
     test("A ship does NOT sink if hitNum != size", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship = new Ship(3);
         gameboard.placeShip(40, ship);
         gameboard.receiveAttack(40);
@@ -122,7 +122,7 @@ describe("Receive Attack", () => {
     });
 
     test("Missed attacks record indexes", () => {
-        const gameboard = new Gameboard(10);
+        const gameboard = new Gameboard();
         const ship = new Ship(3);
         gameboard.placeShip(40, ship);
         gameboard.receiveAttack(50);

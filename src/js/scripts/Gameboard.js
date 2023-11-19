@@ -2,16 +2,17 @@ import { checkBoard, checkPosition } from "./helperfunctions";
 export { Gameboard };
 
 class Gameboard {
-    constructor(size) {
-        this.size = size;
-        this.board = this.buildBoard(size);
+    constructor(player) {
+        this.player = player;
+        this.size = 10;
+        this.board = this.buildBoard();
         this.missedAttacks = [];
     }
 
-    buildBoard = (size) => {
+    buildBoard = () => {
         let board = [];
-        for(let i = 0; i < size; i++) {
-            for(let j = 0; j < size; j++) {
+        for(let i = 0; i < 10; i++) {
+            for(let j = 0; j < 10; j++) {
                 board.push(null);
             }
         }

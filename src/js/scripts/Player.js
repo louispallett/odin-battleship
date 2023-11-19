@@ -1,14 +1,8 @@
+export { Human, Computer };
 import { checkSquare } from "./helperfunctions";
-export { Computer, Player };
 
-class Player {
-    constructor() {}
-};
-
-class Computer extends Player {
-    constructor() {
-        super();
-    };
+class Computer {
+    constructor() {};
 
     play = (gameboard) => {
         let index = 0;
@@ -16,5 +10,14 @@ class Computer extends Player {
             index = Math.floor(Math.random() * 100);
         }
         return index;
+    }
+}
+
+class Human {
+    constructor() {}
+
+    play = (gameboard, index) => {
+        const result = gameboard.receiveAttack(index);
+        return result;
     }
 }

@@ -131,3 +131,21 @@ describe("Receive Attack", () => {
         expect(gameboard.missedAttacks).toEqual(expect.arrayContaining([50, 60, 78]));
     });
 });
+
+describe("Ships array", () => {
+    const playerGameboard = new Gameboard();
+    const computerGameboard = new Gameboard();    
+    const testShip = new Ship(1);
+    playerGameboard.placeShip(0, testShip);
+    computerGameboard.placeShip(0, testShip);
+    
+    test("Ships added to array successfully", () => {
+        expect(playerGameboard.ships.length && computerGameboard.ships.length).toEqual(1);
+    });
+
+    test("Ships removed from array successfully", () => {
+        playerGameboard.receiveAttack(0);
+        computerGameboard.receiveAttack(0);
+        expect(playerGameboard.ships.length && computerGameboard.ships.length).toEqual(0);
+    });
+});

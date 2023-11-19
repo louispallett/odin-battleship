@@ -2,18 +2,7 @@ export { Human, Computer };
 import { checkSquare } from "./helperfunctions";
 
 class Player {
-    constructor() {
-        this.ships = [];
-    }
-
-    addShip = (ship) => {
-        this.ships.push(ship);
-    }
-
-    removeShip = (ship) => {
-        const index = this.ships.indexOf(ship);
-        this.ships.splice(index, 1);
-    }
+    constructor() {}
 }
 
 class Computer extends Player {

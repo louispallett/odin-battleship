@@ -1,8 +1,7 @@
 import '../../scss/styles.scss';
 import { Gameboard } from "./Gameboard";
-import { Computer } from './Player';
+import { Computer, Human } from './Player';
 import { Ship } from "./Ship";
-// import { createGrid, attack } from './DOM-helpers';
 
 // Global variables
 const playerGridElement = document.getElementById('player-grid');
@@ -30,8 +29,8 @@ const computerAttack = (playerGameboard, computer) => {
 
 // The logic which is called when the user presses play.
 const game = () => {
-    const playerGameboard = new Gameboard(10);
-    const computerGameboard = new Gameboard(10);
+    const playerGameboard = new Gameboard();
+    const computerGameboard = new Gameboard();
     const computer = new Computer();
 
     const ship1 = new Ship(3);
@@ -69,7 +68,7 @@ const game = () => {
 const createGrid = (gameboard, gridElement, playing = "computer") => {
     gridElement.innerHTLM = "";
 
-    for(let i = 0; i < gameboard.size * gameboard.size; i++) {
+    for(let i = 0; i < 100; i++) {
         const gridItem = document.createElement("div");
         gridItem.dataset.index = i;
         gridItem.dataset.class = gameboard.board[i];

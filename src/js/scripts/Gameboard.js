@@ -2,11 +2,10 @@ import { checkBoard, checkPosition } from "./helperfunctions";
 export { Gameboard };
 
 class Gameboard {
-    constructor(player) {
-        this.player = player;
-        this.size = 10;
+    constructor() {
         this.board = this.buildBoard();
         this.missedAttacks = [];
+        this.ships = [];
     }
 
     buildBoard = () => {
@@ -31,20 +30,44 @@ class Gameboard {
                     this.board[index + (i * 10)] = ship;
                 }
             }
+            this.ships.push(ship);
             return true;
         }
         return false;
     }
 
+    removeShip = (ship) => {
+        const index = this.ships.indexOf(ship);
+        this.ships.splice(index, 1);
+    }
+
     receiveAttack = (index) => {
         if(this.board[index] === null || this.board[index] == 1) { // Attack fails
+            console.log("miss");
             this.missedAttacks.push(index);
             this.board[index] = 1;
             return false;
         } else { // Attack succeeds
+            console.log("hit");
             const ship = this.board[index];
             ship.hit();
+            if(ship.isSunk()) {
+                // Remove from Ship Array
+                const index = this.ships.indexOf(ship);
+                this.ships.splice(index, 1);
+                if(this.noShips()) {
+                    this.endGame();
+                }
+            }
             return true;
         }
+    }
+
+    noShips = () => {
+        return (this.ships.length == 0)? true : false;
+    }
+
+    endGame = () => {
+        alert("End of Game");
     }
 }

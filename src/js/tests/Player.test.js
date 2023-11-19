@@ -69,21 +69,3 @@ describe("Game", () => {
         expect(computer.play(playerGameboard)).toBeGreaterThan(0);
     });
 });
-
-describe("Ships array", () => {
-    const player = new Human();
-    const computer = new Computer();    
-    const testShip = new Ship(3);
-    player.addShip(testShip);
-    computer.addShip(testShip);
-    
-    test("Ships added to array successfully", () => {
-        expect(player.ships.length && computer.ships.length).toEqual(1);
-    });
-
-    test("Ships removed from array successfully", () => {
-        player.removeShip(testShip);
-        computer.removeShip(testShip);
-        expect(player.ships.length && computer.ships.length).toEqual(0);
-    });
-});

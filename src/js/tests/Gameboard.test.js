@@ -132,20 +132,12 @@ describe("Receive Attack", () => {
     });
 });
 
-describe("Ships array", () => {
-    const playerGameboard = new Gameboard();
-    const computerGameboard = new Gameboard();    
-    const testShip = new Ship(1);
-    playerGameboard.placeShip(0, testShip);
-    computerGameboard.placeShip(0, testShip);
-    
-    test("Ships added to array successfully", () => {
-        expect(playerGameboard.ships.length && computerGameboard.ships.length).toEqual(1);
-    });
-
-    test("Ships removed from array successfully", () => {
-        playerGameboard.receiveAttack(0);
-        computerGameboard.receiveAttack(0);
-        expect(playerGameboard.ships.length && computerGameboard.ships.length).toEqual(0);
-    });
+describe("Hits key", () => {
+    const gameboard = new Gameboard();
+    const ship = new Ship(3);
+    gameboard.placeShip(40, ship);
+    gameboard.receiveAttack(40);
+    gameboard.receiveAttack(41);
+    expect(gameboard.hits.length).toEqual(2)
+    expect(gameboard.hits).toEqual(expect.arrayContaining([40, 41]));
 });

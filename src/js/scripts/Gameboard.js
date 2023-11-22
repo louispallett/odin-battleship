@@ -47,4 +47,11 @@ class Gameboard {
             return true;
         }
     }
+
+    haveLost = () => {
+        if(this.hits.length >= 15) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -85,7 +85,6 @@ const createGrid = (gameboard, gridElement, playing = "computer") => {
             }
         }
 
-        
         gridElement.appendChild(gridItem);
     }
 }
@@ -108,6 +107,9 @@ const attack = (() => {
         gridItem.dataset.class = 0;
         gridItem.style.backgroundColor = "red";
         gameboard.board[index] = 1;
+        if(gameboard.haveLost()) {
+            gameOver(gameboard);
+        }
     };
 
     const miss = (gridItem) => {
@@ -123,3 +125,7 @@ const attack = (() => {
 
     return { attackResult, alreadyClicked };
 })();
+
+const gameOver = (losersGameboard) => {
+    console.log("STOP " + losersGameboard.hits[0]);
+};

@@ -7,9 +7,7 @@
 
 .header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
 }
 
@@ -49,4 +47,38 @@
 
 .buttons {
     margin-left: auto;
+}
+
+.scoreboard {
+    background-color: black;
+    flex: 1 auto;
+    margin: 20px;
+    margin-left: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.detail {
+    align-self: center;
+}
+
+.scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    gap: 5px;
+    // borders
+    & > div:first-child,
+    & > div:nth-child(3) {
+        border-right: 1px dashed white;
+    }
+
+    & > div:first-child,
+    & > div:nth-child(2) {
+        border-bottom: 1px dashed white;
+        padding-bottom: 10px;
+    }
+    
 }

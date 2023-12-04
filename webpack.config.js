@@ -80,6 +80,7 @@ module.exports = {
         type: 'asset/resource',
       },
       {
+        // Module install: npm i -D @babel/preset-react @babel/preset-env @babel/core babel-loader @babel/plugin-proposal-class-properties
         test: /\.jsx?$/,
         use: ['babel-loader'],
       },

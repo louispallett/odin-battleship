@@ -19,12 +19,12 @@
 #player-grid,
 #computer-grid {
   display: grid;
-  grid-template-columns: repeat(10, 40px);
-  grid-template-rows: repeat(10, 40px);
+  grid-template-columns: repeat(10, 45px);
+  grid-template-rows: repeat(10, 45px);
 
   & > div {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     outline: 1px dashed white;
   }
 
@@ -35,4 +35,35 @@
 
 #computer-grid {
     margin-bottom: 60px;
+}
+
+@media only screen and (max-width: 950px) {
+  .gameboards {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #player-grid,
+  #computer-grid {
+      grid-template-columns: repeat(10, 35px);
+      grid-template-rows: repeat(10, 35px);
+      & > div {
+          height: 35px;
+          width: 35px;
+      }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #player-grid,
+  #computer-grid {
+      grid-template-columns: repeat(10, 30px);
+      grid-template-rows: repeat(10, 30px);
+      & > div {
+          height: 30px;
+          width: 30px;
+      }
+  }
 }

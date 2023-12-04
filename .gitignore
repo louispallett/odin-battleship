@@ -1,10 +1,5 @@
-__mocks__/
 dist/
 node_modules/
-src/assets/
+src/assets/background.jpg
 
-babel.config.js
-jest.config.js
 package-lock.json
-package.json
-webpack.config.js

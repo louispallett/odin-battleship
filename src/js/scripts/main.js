@@ -127,5 +127,5 @@ const attack = (() => {
 })();
 
 const gameOver = (losersGameboard) => {
-    console.log("STOP " + losersGameboard.hits[0]);
+    console.log("STOP. Last index hit was: " + losersGameboard.hits[losersGameboard.hits.length - 1]);
 };

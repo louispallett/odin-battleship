@@ -4,8 +4,7 @@ import { Computer, Human } from './Player';
 import { Ship } from "./Ship";
 
 // Global variables
-const playerGridElement = document.getElementById('player-grid');
-const computerGridElement = document.getElementById('computer-grid');
+const playWrapper = document.getElementById("play");
 let turnCounter = 1;
 
 const playBtn = document.getElementById("playbtn");
@@ -13,18 +12,18 @@ playBtn.addEventListener("click", () => {
     game();
 });
 
-const computerTurn = (playerGameboard, computer) => {
+const computerTurn = (playerGameboard, computer, playGrid) => {
     if (turnCounter % 2 != 0) {
         // It's the computer's turn
         setTimeout(() => {
-            computerAttack(playerGameboard, computer);
+            computerAttack(playerGameboard, computer, playGrid);
         }, 0);
     }
 };
 
-const computerAttack = (playerGameboard, computer) => {
+const computerAttack = (playerGameboard, computer, playGrid) => {
     let index = computer.play(playerGameboard);
-    attack.attackResult(playerGameboard, index, playerGridElement.children[index]);
+    attack.attackResult(playerGameboard, index, playGrid.children[index]);
 };
 
 // The logic which is called when the user presses play.
@@ -33,6 +32,7 @@ const game = () => {
     const computerGameboard = new Gameboard();
     const computer = new Computer();
 
+    // TEMP
     const ship1 = new Ship(3);
     const ship2 = new Ship(4);
     const ship3 = new Ship(2, "vertical");
@@ -51,16 +51,42 @@ const game = () => {
     playerGameboard.placeShip(41, ship5);
     computerGameboard.placeShip(84, ship6);
     playerGameboard.placeShip(84, ship6);
+    // TEMP
 
-    createGrid(playerGameboard, playerGridElement, "computer");
-    createGrid(computerGameboard, computerGridElement, "human"); 
+    playBtn.remove();
+    playWrapper.classList.add("gameboards");
 
-    computerGridElement.addEventListener("click", (event) => {
+    const left = document.createElement("div");
+    left.setAttribute("id", "left");
+    const playTitle = document.createElement("div");
+    const playGrid = document.createElement("div");
+    playTitle.classList.add("title");
+    playTitle.textContent = "Player's Gameboard";
+    playGrid.setAttribute("id", "player-grid");
+    left.appendChild(playTitle);
+    left.appendChild(playGrid);
+    playWrapper.appendChild(left);
+    
+    const right = document.createElement("div");
+    right.setAttribute("id", "right");
+    const compTitle = document.createElement("div");
+    const compGrid = document.createElement("div");
+    compTitle.classList.add("title");
+    compTitle.textContent = "Computer's Gameboard";
+    compGrid.setAttribute("id", "player-grid");
+    right.appendChild(compTitle);
+    right.appendChild(compGrid);
+    playWrapper.appendChild(right);
+
+    createGrid(playerGameboard, playGrid, "computer");
+    createGrid(computerGameboard, compGrid, "human"); 
+
+    compGrid.addEventListener("click", (event) => {
         if (turnCounter % 2 == 0) {
             const index = event.target.dataset.index;
             attack.attackResult(computerGameboard, index, event.target);
             turnCounter++;
-            computerTurn(playerGameboard, computer);
+            computerTurn(playerGameboard, computer, playGrid);
         }
     });
 };

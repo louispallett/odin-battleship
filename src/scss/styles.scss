@@ -1,11 +1,12 @@
 @use "header";
 @use "footer";
 @use "game";
+@use "fonts";
 
 body {
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  font-family: "scoreboard", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 .main-wrapper {
@@ -18,16 +19,19 @@ body {
 }
 
 button {
-  padding: 10px 15px;
-  font-size: 1.5rem;
-  width: 100px;
-  cursor: pointer;
-  background-color: #3498db;
+  padding: 10px 30px;
+  font-size: 3.5rem;
+  background-color: black;
   color: #ecf0f1;
   border: none;
+  font-family: "scoreboard";
   border-radius: 5px;
   transition: background 0.3s ease-in-out;
   &:hover {
-      background-color: #2980b9;
+      background-color: #474747;
   }
+}
+
+a, svg, button {
+  cursor: pointer;
 }

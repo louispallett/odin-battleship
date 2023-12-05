@@ -6,7 +6,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    font-size: .8rem;
+    font-size: 1.2rem;
     & > div > a:hover {
         // I have to put this here, becuase of a specificity issue. Just referring to 'a' as a 
         // selector won't work!

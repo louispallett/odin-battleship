@@ -1,9 +1,4 @@
-@font-face {
-    font-family: "title-font";
-    src:
-      url("../assets/title.woff2") format("woff2"),
-      url("../assets/title.woff") format("woff");
-}
+@use "fonts";
 
 .header {
     display: flex;
@@ -14,24 +9,21 @@
 .header-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
+    margin-right: 20px;
 }
 
 .title-wrapper {
     display: flex;
     flex-direction: column;
     margin-left: 40px;
+    gap: 10px;
     & > div:first-child {
-        font-family: "title-font";
-        font-size: 32px;
+        font-family: "battleship-font", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 3.5rem;
+        font-weight: bold;
     }
-}
-
-.title {
-    font-size: 2em;
-    font-weight: 700;
-    margin-right: 10px;
 }
 
 .lowpal-wrapper {
@@ -39,9 +31,10 @@
     align-items: center;
     gap: 10px;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     fill: #a4a4a4;
     margin-right: 5px;
+    font-family: "scoreboard";
     & :hover {
         fill: #ffffff;
         transition: fill 0.4s ease-in-out;
@@ -70,11 +63,16 @@ svg:hover {
     background-color: black;
     flex: 1 auto;
     margin: 20px;
-    margin-left: 100px;
+    margin-left: 20px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
+    font-size: 1.4rem;
+    font-family: "scoreboard", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    & > :first-child {
+        align-self: flex-start;
+    }
 }
 
 .detail {
@@ -86,6 +84,7 @@ svg:hover {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 2fr;
     gap: 5px;
+    margin-left: 50px;
     // borders
     & > div:first-child,
     & > div:nth-child(3) {

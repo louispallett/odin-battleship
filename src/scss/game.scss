@@ -1,3 +1,5 @@
+@use "fonts";
+
 .gameboards {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -21,6 +23,7 @@
   display: grid;
   grid-template-columns: repeat(10, 45px);
   grid-template-rows: repeat(10, 45px);
+  margin-bottom: 50px;
 
   & > div {
     height: 45px;
@@ -31,10 +34,6 @@
   & > div:hover {
     background-color: white;
   }
-}
-
-#computer-grid {
-    margin-bottom: 60px;
 }
 
 @media only screen and (max-width: 950px) {
@@ -54,10 +53,12 @@
           width: 35px;
       }
   }
+}
 
-  .title {
-    font-size: 1.5rem;
-  }
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "scoreboard";
 }
 
 @media only screen and (max-width: 450px) {

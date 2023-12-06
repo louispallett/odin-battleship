@@ -1,5 +1,5 @@
 import { Ship } from "./Ship";
-import { detail, updateScore } from "./scoreboard";
+import { detail, updateScore, announceWinner } from "./scoreboard";
 export { addAttackFunctionality, attack, createGrid };
 
 let turnCounter = 1;
@@ -29,6 +29,7 @@ const createGrid = (gameboard, gridElement, playing = "computer") => {
 
 const attack = (() => {
     const attackResult = (gameboard, index, gridItem) => {
+
         const hitResult = gameboard.receiveAttack(index);
 
         if(alreadyClicked(gridItem)) return;
@@ -67,6 +68,7 @@ const attack = (() => {
 })();
 
 const gameOver = (losersGameboard) => {
+    announceWinner(losersGameboard);
     console.log("STOP. Last index hit was: " + losersGameboard.hits[losersGameboard.hits.length - 1]);
 };
 

@@ -6,7 +6,6 @@ import { addAttackFunctionality, createGrid } from './DOM';
 
 const playWrapper = document.getElementById("play");
 
-
 const playBtn = document.getElementById("playbtn");
 playBtn.addEventListener("click", () => {
     game();

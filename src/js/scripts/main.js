@@ -4,7 +4,6 @@ import { Computer, Human } from './Player';
 import { Ship } from "./Ship";
 import { addAttackFunctionality, createGrid } from './DOM';
 
-// Global variables
 const playWrapper = document.getElementById("play");
 
 
@@ -13,10 +12,9 @@ playBtn.addEventListener("click", () => {
     game();
 });
 
-// The logic which is called when the user presses play.
 const game = () => {
-    const playerGameboard = new Gameboard();
-    const computerGameboard = new Gameboard();
+    const playerGameboard = new Gameboard("computer");
+    const computerGameboard = new Gameboard("player");
     const computer = new Computer();
 
     // TEMP

@@ -1,4 +1,5 @@
 import { Ship } from "./Ship";
+import { detail, updateScore } from "./scoreboard";
 export { addAttackFunctionality, attack, createGrid };
 
 let turnCounter = 1;
@@ -35,7 +36,7 @@ const attack = (() => {
         if(hitResult) {
             success(gameboard, index, gridItem);
         } else {
-            miss(gridItem);
+            miss(gameboard, index, gridItem);
         }
     };
     
@@ -43,14 +44,18 @@ const attack = (() => {
         gridItem.dataset.class = 0;
         gridItem.style.backgroundColor = "red";
         gameboard.board[index] = 1;
+        updateScore(gameboard);
         if(gameboard.haveLost()) {
             gameOver(gameboard);
+            return;
         }
+        detail(gameboard, index, "hits");
     };
 
-    const miss = (gridItem) => {
+    const miss = (gameboard, index, gridItem) => {
         gridItem.dataset.class = 1;
         gridItem.style.backgroundColor = "pink";
+        detail(gameboard, index, "misses");
     };
 
     const alreadyClicked = (gridItem) => {
@@ -69,7 +74,7 @@ const computerTurn = (playerGameboard, computer, playGrid) => {
     if (turnCounter % 2 != 0) {
         setTimeout(() => {
             computerAttack(playerGameboard, computer, playGrid);
-        }, 0);
+        }, 1500);
     }
 };
 

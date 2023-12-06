@@ -68,7 +68,7 @@ svg:hover {
     }
 }
 
-.detail {
+#detail {
     align-self: center;
     font-size: 2rem;
 }
@@ -97,7 +97,7 @@ svg:hover {
     font-size: 2rem;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 970px) {
     .header {
         display: flex;
         flex-direction: column;
@@ -123,7 +123,7 @@ svg:hover {
         font-size: 3.5rem;
     }
 
-    .detail {
+    #detail {
         font-size: 1.5rem;
     }
 }

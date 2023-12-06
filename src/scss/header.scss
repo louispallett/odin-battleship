@@ -55,6 +55,8 @@ svg:hover {
 
 .scoreboard {
     background-color: black;
+    border: 1px solid white;
+    box-shadow: 2px 2px 5px black;
     flex: 1 auto;
     margin: 20px;
     margin-left: 20px;
@@ -68,28 +70,25 @@ svg:hover {
     }
 }
 
-.detail {
-    align-self: center;
-    font-size: 2rem;
-}
-
 .scores {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 2fr;
-    gap: 5px;
     margin-left: 50px;
+    padding: 10px;
     text-align: center;
+    gap: 20px;
     // borders
-    & > div:first-child,
-    & > div:nth-child(3) {
-        border-right: 1px dashed white;
-    }
     & > div:first-child,
     & > div:nth-child(2) {
         border-bottom: 1px dashed white;
         padding-bottom: 10px;
     }
+}
+
+.detail {
+    align-self: center;
+    font-size: 2rem;
 }
 
 .score-num {

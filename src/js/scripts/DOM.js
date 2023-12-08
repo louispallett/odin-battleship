@@ -70,7 +70,7 @@ const attack = (() => {
 const gameOver = (losersGameboard) => {
     announceWinner(losersGameboard);
     console.log("STOP. Last index hit was: " + losersGameboard.hits[losersGameboard.hits.length - 1]);
-};
+}
 
 const computerTurn = (playerGameboard, computer, playGrid) => {
     if (turnCounter % 2 != 0) {
@@ -78,12 +78,12 @@ const computerTurn = (playerGameboard, computer, playGrid) => {
             computerAttack(playerGameboard, computer, playGrid);
         }, 1500);
     }
-};
+}
 
 const computerAttack = (playerGameboard, computer, playGrid) => {
     let index = computer.play(playerGameboard);
     attack.attackResult(playerGameboard, index, playGrid.children[index]);
-};
+}
 
 const addAttackFunctionality = (compGrid, playerGameboard, computerGameboard, computer, playGrid) => {
     compGrid.addEventListener("click", (event) => {

@@ -1,4 +1,4 @@
-export { pre_game };
+export { pre_game, createDoneBtn };
 
 const playWrapper = document.getElementById("play");
 
@@ -22,4 +22,14 @@ const createGrid = (gridParent) => {
         gridItem.dataset.index = i;
         gridParent.appendChild(gridItem);
     }
+}
+
+const createDoneBtn = () => {
+    const doneBtn = document.createElement("button");
+    doneBtn.textContent = "Done";
+    doneBtn.setAttribute("id", "doneBtn");
+    doneBtn.addEventListener("click", () => {
+        console.log("Done");
+    });
+    playWrapper.appendChild(doneBtn);
 }

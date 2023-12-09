@@ -1,31 +1,41 @@
 export { Human, Computer };
 import { checkSquare } from "./helperfunctions";
 
+// NOTE: 'gameboard' refers to the OPPONENT gameboard
 class Player {
-    constructor() {}
-}
+    constructor(gameboard) {
+        this.gameboard = gameboard;
+    }
 
-class Computer extends Player {
-    constructor() {
-        super();
-    };
-
-    play = (gameboard) => {
-        let index = 0;
-        while(!checkSquare(gameboard, index)) {
-            index = Math.floor(Math.random() * 100);
+    haveLost = () => {
+        if(this.gameboard.hits >= 15) {
+            return true;
         }
-        return index;
+        return false;
     }
 }
 
 class Human extends Player {
-    constructor() {
-        super();
+    constructor(gameboard) {
+        super(gameboard);
     }
 
-    play = (gameboard, index) => {
-        const result = gameboard.receiveAttack(index);
-        return result;
+    play = (index) => {
+        return this.gameboard.receiveAttack(index);
+    }
+}
+
+class Computer extends Player {
+    constructor(gameboard) {
+        super(gameboard);
+    }
+
+    play = () => {
+        let index = 0;
+        while(!checkSquare(this.gameboard, index)) {
+            index = Math.floor(Math.random() * 100);
+        }
+        // return this.gameboard.receiveAttack(index);
+        return index;
     }
 }

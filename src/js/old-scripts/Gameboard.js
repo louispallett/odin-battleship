@@ -2,10 +2,11 @@ import { checkBoard, checkPosition } from "./helperfunctions";
 export { Gameboard };
 
 class Gameboard {
-    constructor() {
+    constructor(opponent) {
         this.board = this.buildBoard();
-        this.hits = [];
         this.missedAttacks = [];
+        this.hits = [];
+        this.opponent = opponent;
     }
 
     buildBoard = () => {
@@ -46,5 +47,12 @@ class Gameboard {
             ship.hit();
             return true;
         }
+    }
+
+    haveLost = () => {
+        if(this.hits.length >= 15) {
+            return true;
+        }
+        return false;
     }
 }

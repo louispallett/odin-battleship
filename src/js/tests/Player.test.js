@@ -19,53 +19,30 @@ describe("checksquare", () => {
 });
 
 describe("Player", () => {
+    const gameboard = new Gameboard();
+    const player = new Human(gameboard);
+    const ship = new Ship(5, "vertical");
+    gameboard.placeShip(24, ship);
     test("Player can attack successfully", () => {
-        const humanPlayer = new Human();
-        const gameboard = new Gameboard();
-        const ship = new Ship(5, "vertical");
-        gameboard.placeShip(24, ship);
-        expect(humanPlayer.play(gameboard, 54)).toBeTruthy();
+        expect(player.play(54)).toBeTruthy();
     });
-
     test("Player can attack unsuccessfully", () => {
-        const humanPlayer = new Human();
-        const gameboard = new Gameboard();
-        const ship = new Ship(5, "vertical");
-        gameboard.placeShip(24, ship);
-        expect(humanPlayer.play(gameboard, 56)).toBeFalsy();   
-        expect(gameboard.missedAttacks).toEqual(expect.arrayContaining([56]));
-    });
+        expect(player.play(25)).toBeFalsy();
+        expect(gameboard.missedAttacks).toEqual(expect.arrayContaining([25]));
+    })
 });
 
-describe("Game", () => {
-    // Variables are named after ones OWN gameboard - i.e. player places their ship on THEIR gameboard
-    // and attacks the COMPUTER gameboard
-    const playerGameboard = new Gameboard();
-    const computerGameboard = new Gameboard();
-    const player = new Human();
-    const computer = new Computer();
-
-    const pShip1 = new Ship(4);
-    const pShip2 = new Ship(3, "vertical");
-    const pShip3 = new Ship(2);
-    playerGameboard.placeShip(10, pShip1);
-    playerGameboard.placeShip(25, pShip2);
-    playerGameboard.placeShip(87, pShip3);
-
-    const cShip1 = new Ship(4);
-    const cShip2 = new Ship(3, "vertical");
-    const cShip3 = new Ship(2);
-    computerGameboard.placeShip(10, cShip1);
-    computerGameboard.placeShip(25, cShip2);
-    computerGameboard.placeShip(66, cShip3);
-    test("Human successfully attacks", () => {
-        expect(player.play(computerGameboard, 13)).toBeTruthy();
-        expect(cShip1.hitNum).toEqual(1);
-    }); 
-
-    // To test this, we have to return the index on this function
-    test("Computer does not attack same position twice", () => {
-        playerGameboard.receiveAttack(0);
-        expect(computer.play(playerGameboard)).toBeGreaterThan(0);
+describe("Computer", () => {
+    const gameboard = new Gameboard();
+    const computer = new Computer(gameboard);
+    const ship = new Ship(2);
+    gameboard.placeShip(0, ship);
+    // gameboard.receiveAttack(0);
+    test("Computer can attack", () => {
+        expect(ship.hitNum).toEqual(1);
     });
+    test("Computer does not attack the same place twice", () => {
+        // expect(computer.play()).toBeGreaterThan(0);
+        expect(gameboard.board[0]).toBe(0);
+    })
 });

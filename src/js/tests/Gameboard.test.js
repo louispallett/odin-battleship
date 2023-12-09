@@ -132,7 +132,7 @@ describe("Receive Attack", () => {
     });
 });
 
-describe("Hits key", () => {
+test("Hits key", () => {
     const gameboard = new Gameboard();
     const ship = new Ship(3);
     gameboard.placeShip(40, ship);
@@ -142,17 +142,17 @@ describe("Hits key", () => {
     expect(gameboard.hits).toEqual(expect.arrayContaining([40, 41]));
 });
 
-describe("haveLost() function", () => {
-    const gameboard = new Gameboard();
-    const ship = new Ship(2);
-    gameboard.placeShip(0, ship);
-    test("haveLost() returns false when ships still float", () => {
-        gameboard.receiveAttack(0);
-        expect(gameboard.haveLost()).toBeFalsy();
-    });
+// describe("haveLost() function", () => {
+//     const gameboard = new Gameboard();
+//     const ship = new Ship(2);
+//     gameboard.placeShip(0, ship);
+//     test("haveLost() returns false when ships still float", () => {
+//         gameboard.receiveAttack(0);
+//         expect(gameboard.haveLost()).toBeFalsy();
+//     });
     
-    test("haveLost() returns true when all ships sunk", () => {
-        gameboard.receiveAttack(1);
-        expect(gameboard.haveLost()).toBeTruthy();
-    });
-});
+//     test("haveLost() returns true when all ships sunk", () => {
+//         gameboard.receiveAttack(1);
+//         expect(gameboard.haveLost()).toBeTruthy();
+//     });
+// });

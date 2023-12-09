@@ -3,9 +3,13 @@
   justify-content: center;
 }
 
+#doneBtn {
+  align-self: center;
+}
+
 .gameboards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 #left,

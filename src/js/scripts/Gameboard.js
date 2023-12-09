@@ -44,6 +44,7 @@ class Gameboard {
             const ship = this.board[index];
             this.hits.push(index);
             ship.hit();
+            this.board[index] = 0;
             return true;
         }
     }

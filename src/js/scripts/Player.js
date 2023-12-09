@@ -35,7 +35,6 @@ class Computer extends Player {
         while(!checkSquare(this.gameboard, index)) {
             index = Math.floor(Math.random() * 100);
         }
-        // return this.gameboard.receiveAttack(index);
-        return index;
+        return this.gameboard.receiveAttack(index);
     }
 }

@@ -1,8 +1,11 @@
+import { place } from "./placement";
+import { Gameboard } from "./Gameboard";
 export { pre_game, createDoneBtn };
 
 const playWrapper = document.getElementById("play");
 
 const pre_game = () => {
+    const playerGB = new Gameboard();
     const left = document.createElement("div");
     left.setAttribute("id", "left");
     const playTitle = document.createElement("div");
@@ -19,7 +22,9 @@ const pre_game = () => {
 const createGrid = (gridParent) => {
     for(let i = 0; i < 100; i++) {
         const gridItem = document.createElement("div");
+        gridItem.classList.add("grid-item");
         gridItem.dataset.index = i;
+        gridItem.onclick = function() {place(this)}; // Call function here!
         gridParent.appendChild(gridItem);
     }
 }

@@ -2,34 +2,18 @@ import '../../scss/styles.scss';
 import { Gameboard } from "./Gameboard";
 import { Computer, Human } from './Player';
 import { Ship } from "./Ship";
+import { addAttackFunctionality, createGrid } from './DOM';
 
-// Global variables
 const playWrapper = document.getElementById("play");
-let turnCounter = 1;
 
 const playBtn = document.getElementById("playbtn");
 playBtn.addEventListener("click", () => {
     game();
 });
 
-const computerTurn = (playerGameboard, computer, playGrid) => {
-    if (turnCounter % 2 != 0) {
-        // It's the computer's turn
-        setTimeout(() => {
-            computerAttack(playerGameboard, computer, playGrid);
-        }, 0);
-    }
-};
-
-const computerAttack = (playerGameboard, computer, playGrid) => {
-    let index = computer.play(playerGameboard);
-    attack.attackResult(playerGameboard, index, playGrid.children[index]);
-};
-
-// The logic which is called when the user presses play.
 const game = () => {
-    const playerGameboard = new Gameboard();
-    const computerGameboard = new Gameboard();
+    const playerGameboard = new Gameboard("computer");
+    const computerGameboard = new Gameboard("player");
     const computer = new Computer();
 
     // TEMP
@@ -81,77 +65,5 @@ const game = () => {
     createGrid(playerGameboard, playGrid, "computer");
     createGrid(computerGameboard, compGrid, "human"); 
 
-    compGrid.addEventListener("click", (event) => {
-        if (turnCounter % 2 == 0) {
-            const index = event.target.dataset.index;
-            attack.attackResult(computerGameboard, index, event.target);
-            turnCounter++;
-            computerTurn(playerGameboard, computer, playGrid);
-        }
-    });
-};
-
-const createGrid = (gameboard, gridElement, playing = "computer") => {
-    gridElement.innerHTLM = "";
-
-    for(let i = 0; i < 100; i++) {
-        const gridItem = document.createElement("div");
-        gridItem.dataset.index = i;
-        gridItem.dataset.class = gameboard.board[i];
-        
-        if(playing == "human") {
-            gridItem.addEventListener("click", () => {
-                if(attack.alreadyClicked(gridItem)) return;
-                attack.attackResult(gameboard, i, gridItem)
-                turnCounter++;
-            });
-        } else {
-            if (gameboard.board[i] instanceof Ship) {
-                gridItem.style.backgroundColor = "green";
-            }
-        }
-
-        gridElement.appendChild(gridItem);
-    }
-}
-
-const attack = (() => {
-    const attackResult = (gameboard, index, gridItem) => {
-        const hitResult = gameboard.receiveAttack(index);
-
-        if(alreadyClicked(gridItem)) return;
-
-        if(hitResult) {
-            success(gameboard, index, gridItem);
-        } else {
-            miss(gridItem);
-        }
-    };
-    
-    const success = (gameboard, index, gridItem) => {
-        if(alreadyClicked(gridItem)) return;
-        gridItem.dataset.class = 0;
-        gridItem.style.backgroundColor = "red";
-        gameboard.board[index] = 1;
-        if(gameboard.haveLost()) {
-            gameOver(gameboard);
-        }
-    };
-
-    const miss = (gridItem) => {
-        if(alreadyClicked(gridItem)) return;
-        gridItem.dataset.class = 1;
-        gridItem.style.backgroundColor = "pink";
-    };
-
-    const alreadyClicked = (gridItem) => {
-        return(gridItem.dataset.class == 1 ||
-            gridItem.dataset.class == 0)? true : false;
-    };
-
-    return { attackResult, alreadyClicked };
-})();
-
-const gameOver = (losersGameboard) => {
-    console.log("STOP. Last index hit was: " + losersGameboard.hits[losersGameboard.hits.length - 1]);
+    addAttackFunctionality(compGrid, playerGameboard, computerGameboard, computer, playGrid);
 };

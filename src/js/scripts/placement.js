@@ -1,5 +1,5 @@
 import { Ship, ships } from "./Ship";
-import { attack } from "./DOM";
+import { attack, createExample } from "./DOM";
 import { checkBoard, checkPosition } from "./helperfunctions";
 import { Gameboard } from "./Gameboard";
 export { place };
@@ -39,6 +39,7 @@ const place = (gridItem) => {
 
     clicks++;
     showPlayerGrid(playerGB);
+    createExample(ships[clicks]);
 }
 
 const showPlayerGrid = (gameboard) => {
@@ -89,9 +90,8 @@ const createComputerGrid = () => {
     // Add ships randomly here via function!
     placeCBShips(compGB);
 
-    const playWrapper = document.getElementById("play");
-    const right = document.createElement("div");
-    right.setAttribute("id", "right");
+    const right = document.getElementById("right");
+    right.innerHTML = "";
     const compTitle = document.createElement("div");
     compTitle.classList.add("title");
     compTitle.textContent = "Computer's Board";
@@ -112,7 +112,6 @@ const createComputerGrid = () => {
         compGrid.appendChild(gridItem);
     }
     right.appendChild(compGrid);
-    playWrapper.appendChild(right);
 }
 
 const placeCBShips = (gameboard) => {

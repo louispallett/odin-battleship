@@ -1,6 +1,8 @@
-import { place, indexes } from "./placement";
+import { place } from "./placement";
+import { Gameboard } from "./Gameboard";
+import { ships, Ship } from "./Ship";
 import { detail, updateScore } from "./scoreboard";
-export { pre_game, createDoneBtn, attack };
+export { pre_game, createDoneBtn, attack, createExample };
 
 const playWrapper = document.getElementById("play");
 
@@ -16,6 +18,11 @@ const pre_game = () => {
     left.appendChild(playTitle);
     left.appendChild(playGrid);
     playWrapper.appendChild(left);
+
+    const right = document.createElement("div");
+    right.setAttribute("id", "right");
+    playWrapper.appendChild(right);
+    createExample(ships[0]);
 }
 
 const createGrid = (gridParent) => {
@@ -79,3 +86,32 @@ const attack = (() => {
 
     return { attackResult, alreadyClicked };
 })();
+
+const createExample = (ship) => {
+    const exampleGB = new Gameboard();
+    exampleGB.placeShip(11, ship);
+    
+    const right = document.getElementById("right");
+    right.innerHTML = "";
+
+    const exampleTitle = document.createElement("div");
+    exampleTitle.classList.add("title");
+    exampleTitle.textContent = "Ship to place";
+    right.appendChild(exampleTitle);
+
+    const exampleGrid = document.createElement("div");
+    exampleGrid.setAttribute("id", "example-grid");
+
+    for(let i = 0; i < 100; i++) {
+        const gridItem = document.createElement("div");
+        gridItem.dataset.index = i;
+        gridItem.dataset.class = exampleGB.board[i];
+
+        if(exampleGB.board[i] instanceof Ship) {
+            gridItem.style.backgroundColor = "green";
+        }
+
+        exampleGrid.appendChild(gridItem);
+    }
+    right.appendChild(exampleGrid);
+}   

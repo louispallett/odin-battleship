@@ -3,10 +3,8 @@ import { detail, updateScore } from "./scoreboard";
 export { pre_game, createDoneBtn, attack };
 
 const playWrapper = document.getElementById("play");
-// const detail = document.getElementById("detail");
 
 const pre_game = () => {
-    // const playerGB = new Gameboard();
     const left = document.createElement("div");
     left.setAttribute("id", "left");
     const playTitle = document.createElement("div");
@@ -45,7 +43,6 @@ const createDoneBtn = () => {
 
 const attack = (() => {
     const attackResult = (gameboard, index, gridItem) => {
-
         const hitResult = gameboard.receiveAttack(index);
 
         if(alreadyClicked(gridItem)) return;
@@ -62,10 +59,10 @@ const attack = (() => {
         gridItem.style.backgroundColor = "red";
         gameboard.board[index] = 1;
         updateScore(gameboard);
-        if(gameboard.haveLost()) {
-            gameOver(gameboard);
-            return;
-        }
+        // if(gameboard.haveLost()) {
+        //     gameOver(gameboard);
+        //     return;
+        // }
         detail(gameboard, index, "hits");
     };
 

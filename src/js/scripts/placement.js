@@ -1,6 +1,6 @@
 import { Ship, ships } from "./Ship";
 import { attack } from "./DOM";
-import { checkBoard, checkPosition } from "./helperfunctions";
+import { checkBoard, checkPosition, checkSquare } from "./helperfunctions";
 import { Gameboard } from "./Gameboard";
 export { place };
 
@@ -67,6 +67,7 @@ const createPlayerGrid = (gameboard) => {
 const createComputerGrid = () => {
     const compGB = new Gameboard();
     // Add ships randomly here via function!
+    placeCBShips(compGB);
 
     const playWrapper = document.getElementById("play");
     const right = document.createElement("div");
@@ -92,4 +93,20 @@ const createComputerGrid = () => {
     }
     right.appendChild(compGrid);
     playWrapper.appendChild(right);
+}
+
+const placeCBShips = (gameboard) => {
+    for(let i = 0; i < ships.length; i++) {
+        let index = getLegalIndex(gameboard, ships[i]);
+        gameboard.placeShip(index, ships[i]);
+    }
+    
+}
+
+const getLegalIndex = (gameboard, ship) => {
+    let index = Math.floor(Math.random() * 100);
+    while(!checkBoard(gameboard, index, ship) || !checkPosition(ship, index)) {
+        index = Math.floor(Math.random() * 100);
+    }
+    return index;
 }

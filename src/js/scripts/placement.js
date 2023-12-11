@@ -1,6 +1,6 @@
 import { Ship, ships } from "./Ship";
 import { attack } from "./DOM";
-import { checkBoard, checkPosition, checkSquare } from "./helperfunctions";
+import { checkBoard, checkPosition } from "./helperfunctions";
 import { Gameboard } from "./Gameboard";
 export { place };
 
@@ -38,6 +38,26 @@ const place = (gridItem) => {
     }
 
     clicks++;
+    showPlayerGrid(playerGB);
+}
+
+const showPlayerGrid = (gameboard) => {
+    const playGrid = document.getElementById("player-grid");
+    const playerTitle = document.querySelector("title");
+    playerTitle.textContent = "Player's Board";
+    playGrid.innerHTML = "";
+    for(let i = 0; i < 100; i++) {
+        const gridItem = document.createElement("div");
+        gridItem.dataset.index = i;
+        gridItem.dataset.class = gameboard.board[i];
+        gridItem.onclick = function() {place(this)};
+
+        if(gameboard.board[i] instanceof Ship) {
+            gridItem.style.backgroundColor = "green";
+        }
+
+        playGrid.appendChild(gridItem);
+    }
 }
 
 // Where we set the game up!

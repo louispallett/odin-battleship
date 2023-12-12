@@ -1,9 +1,5 @@
 import '../../scss/styles.scss';
-import { Gameboard } from "./Gameboard";
-import { Computer, Human } from './Player';
-// import { Ship } from "./Ship";
-import { pre_game, createDoneBtn } from './DOM';
-import { indexes } from './placement';
+import { pre_game } from './DOM';
 // import { addAttackFunctionality, createGrid } from './DOM';
 
 const detail = document.getElementById("detail");

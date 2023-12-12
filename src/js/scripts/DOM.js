@@ -1,6 +1,5 @@
+import { Gameboard, Ship, ships } from "./classes";
 import { place } from "./placement";
-import { Gameboard } from "./Gameboard";
-import { ships, Ship } from "./Ship";
 import { detail, updateScore } from "./scoreboard";
 export { pre_game, attack, createExample };
 

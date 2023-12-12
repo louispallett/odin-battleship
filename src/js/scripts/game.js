@@ -1,5 +1,4 @@
-import { Gameboard } from "./Gameboard";
-import { Ship, ships } from "./Ship";
+import { Gameboard, Ship, ships } from "./classes";
 import { attack } from "./DOM";
 import { checkBoard, checkPosition } from "./helperfunctions";
 export { setUp };

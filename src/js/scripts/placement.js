@@ -1,8 +1,7 @@
-import { Ship, ships } from "./Ship";
+import { Gameboard, Ship, ships } from "./classes";
 import { setUp } from "./game";
 import { createExample } from "./DOM";
 import { checkBoard, checkPosition } from "./helperfunctions";
-import { Gameboard } from "./Gameboard";
 export { place };
 
 const detail = document.getElementById("detail");

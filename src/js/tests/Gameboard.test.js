@@ -1,5 +1,4 @@
-import { Gameboard } from "../scripts/Gameboard";
-import { Ship } from "../scripts/Ship";
+import { Gameboard, Ship } from "../scripts/classes";
 import { checkBoard } from "../scripts/helperfunctions";
 
 describe("checkBoard", () => {

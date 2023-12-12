@@ -1,4 +1,4 @@
-import { Ship } from "../scripts/Ship";
+import { Ship } from "../scripts/classes";
 import { checkPosition } from "../scripts/helperfunctions";
 
 describe("Ship", () => {

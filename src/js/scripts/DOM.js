@@ -34,19 +34,6 @@ const createGrid = (gridParent) => {
     }
 }
 
-// POSSIBLY DELETE
-// const createDoneBtn = () => {
-//     const doneBtn = document.createElement("button");
-//     doneBtn.textContent = "Done";
-//     doneBtn.setAttribute("id", "doneBtn");
-//     doneBtn.addEventListener("click", () => {
-//         // Here we need to call the logic which creates the gameboards!
-//         console.log("Done");
-//     });
-//     playWrapper.appendChild(doneBtn);
-// }
-
-
 const attack = (() => {
     const attackResult = (gameboard, index, gridItem) => {
         const hitResult = gameboard.receiveAttack(index);

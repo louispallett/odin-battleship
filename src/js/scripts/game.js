@@ -1,11 +1,11 @@
 import { Gameboard, Ship, ships } from "./classes";
 import { attack } from "./DOM";
-import { checkBoard, checkPosition } from "./helperfunctions";
+import { checkBoard, checkPosition, checkSquare } from "./helperfunctions";
 export { setUp };
 
 const setUp = (playerGB) => {
     createPlayerGrid(playerGB);
-    createComputerGrid();
+    createComputerGrid(playerGB);
 }
 
 const createPlayerGrid = (gameboard) => {
@@ -26,9 +26,8 @@ const createPlayerGrid = (gameboard) => {
     }
 }
 
-const createComputerGrid = () => {
+const createComputerGrid = (playerGB) => {
     const compGB = new Gameboard();
-
     placeCBShips(compGB);
 
     const right = document.getElementById("right");
@@ -41,6 +40,8 @@ const createComputerGrid = () => {
     const compGrid = document.createElement("div");
     compGrid.setAttribute("id", "computer-grid");
 
+    const playGrid = document.getElementById("player-grid");
+
     for(let i = 0; i < 100; i++) {
         const gridItem = document.createElement("div");
         gridItem.dataset.index = i;
@@ -49,7 +50,7 @@ const createComputerGrid = () => {
         gridItem.addEventListener("click", () => {
             if(attack.alreadyClicked(gridItem)) return;
             attack.attackResult(compGB, i, gridItem);
-            
+            computer.computerAttack(playerGB, playGrid);
         });
         compGrid.appendChild(gridItem);
     }
@@ -71,3 +72,21 @@ const getLegalIndex = (gameboard, ship) => {
     }
     return index;
 }
+
+const computer = (() => {
+    
+    const computerAttack = (gameboard, playGrid) => {
+        let index = getIndex(gameboard);
+        attack.attackResult(gameboard, index, playGrid.children[index]);
+    }
+
+    const getIndex = (gameboard) => {
+        let index = 0;
+        while(!checkSquare(gameboard, index)) {
+            index = Math.floor(Math.random() * 100);
+        }
+        return index;
+    }
+
+    return { computerAttack };
+})();

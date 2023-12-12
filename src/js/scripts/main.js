@@ -1,6 +1,5 @@
 import '../../scss/styles.scss';
 import { pre_game } from './DOM';
-// import { addAttackFunctionality, createGrid } from './DOM';
 
 const detail = document.getElementById("detail");
 

@@ -45,8 +45,6 @@ const place = (gridItem) => {
 
 const showPlayerGrid = (gameboard) => {
     const playGrid = document.getElementById("player-grid");
-    const playerTitle = document.querySelector("title");
-    playerTitle.textContent = "Player's Board";
     playGrid.innerHTML = "";
     for(let i = 0; i < 100; i++) {
         const gridItem = document.createElement("div");
@@ -70,7 +68,7 @@ const setUp = () => {
 
 const createPlayerGrid = (gameboard) => {
     const playGrid = document.getElementById("player-grid");
-    const playerTitle = document.querySelector("title");
+    const playerTitle = document.querySelector(".title");
     playerTitle.textContent = "Player's Board";
     playGrid.innerHTML = "";
     for(let i = 0; i < 100; i++) {

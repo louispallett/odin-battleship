@@ -1,5 +1,5 @@
 import { Ship, ships } from "./Ship";
-import { createComputerGrid } from "./game";
+import { setUp } from "./game";
 import { createExample } from "./DOM";
 import { checkBoard, checkPosition } from "./helperfunctions";
 import { Gameboard } from "./Gameboard";
@@ -34,7 +34,7 @@ const place = (gridItem) => {
         setTimeout(() => {
             detail.textContent = "Ready to play!";
         }, 1000);
-        setUp();
+        setUp(playerGB);
         return;
     }
 
@@ -51,30 +51,6 @@ const showPlayerGrid = (gameboard) => {
         gridItem.dataset.index = i;
         gridItem.dataset.class = gameboard.board[i];
         gridItem.onclick = function() {place(this)};
-
-        if(gameboard.board[i] instanceof Ship) {
-            gridItem.style.backgroundColor = "green";
-        }
-
-        playGrid.appendChild(gridItem);
-    }
-}
-
-// Where we set the game up!
-const setUp = () => {
-    createPlayerGrid(playerGB);
-    createComputerGrid();
-}
-
-const createPlayerGrid = (gameboard) => {
-    const playGrid = document.getElementById("player-grid");
-    const playerTitle = document.querySelector(".title");
-    playerTitle.textContent = "Player's Board";
-    playGrid.innerHTML = "";
-    for(let i = 0; i < 100; i++) {
-        const gridItem = document.createElement("div");
-        gridItem.dataset.index = i;
-        gridItem.dataset.class = gameboard.board[i];
 
         if(gameboard.board[i] instanceof Ship) {
             gridItem.style.backgroundColor = "green";
